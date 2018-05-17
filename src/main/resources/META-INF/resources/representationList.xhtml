@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Landing Page</title>
+</h:head>
+
+<h:body>
+    <h:form >
+
+        <p:panel header="Panel Name">
+            <h:panelGrid columns="2" cellpadding="4">
+                <p:dataTable id="repTable" var="rep" value="#{representationController.representations}">
+
+                    <p:column headerText="Title" width="200">
+                        <h:outputText value="#{rep.show.title}" />
+                    </p:column>
+
+                    <p:column headerText="Location" width="300">
+                        <h:outputText value="#{rep.location.designation}" />
+                    </p:column>
+
+                    <p:column headerText="Date and time"  width="150">
+                        <h:outputText value="#{rep.datetime}" >
+                            <f:converter converterId="localDateTimeConverter" />
+                            <f:attribute name="pattern" value="dd-MM-yyyy hh:mm" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Price" width="50">
+                        <h:outputText value="#{rep.show.price}" />
+                    </p:column>
+
+                    <p:column headerText="Book it" width="80">
+                        <p:commandButton id="bookButton" value="Go!" disabled="#{not rep.show.bookable}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </h:panelGrid>
+
+            <p:commandButton id="load" value="Load" action="#{representationController.loadList()}" update="repTable"/>
+
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
