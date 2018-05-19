@@ -1,6 +1,3 @@
-ALTER TABLE representations
-  ADD COLUMN datetime DATETIME;
-
 # Changes to pass Hibernate validation. todo: See if I could avoid some of these changes
 
 RENAME TABLE artiste_type_show TO artiste_type_shows;

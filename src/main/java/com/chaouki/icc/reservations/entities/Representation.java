@@ -14,7 +14,7 @@ public class Representation {
     @ManyToOne
     private Location location;
 
-    private LocalDateTime datetime;
+    private LocalDateTime when;
 
     public Integer getId() {
         return id;
@@ -40,11 +40,11 @@ public class Representation {
         this.location = location;
     }
 
-    public LocalDateTime getDatetime() {
-        return datetime;
+    public LocalDateTime getWhen() {
+        return when;
     }
 
-    public void setDatetime(LocalDateTime datetime) {
-        this.datetime = datetime;
+    public void setWhen(LocalDateTime datetime) {
+        this.when = datetime;
     }
 }
