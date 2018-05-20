@@ -13,9 +13,12 @@
 <h:body>
     <h:form >
 
-        <p:panel header="Panel Name">
+        <p:panel header="Representations">
             <h:panelGrid columns="2" cellpadding="4">
-                <p:dataTable id="repTable" var="rep" value="#{representationController.representations}">
+                <p:dataTable id="repTable" var="rep" value="#{representationController.representations}"
+                             paginator="true" rows="10"
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                lazy="true">
 
                     <p:column headerText="Title" width="200">
                         <h:outputText value="#{rep.show.title}" />
@@ -26,25 +29,32 @@
                     </p:column>
 
                     <p:column headerText="Date and time"  width="150">
-                        <h:outputText value="#{rep.datetime}" >
+                        <h:outputText value="#{rep.when}" >
                             <f:converter converterId="localDateTimeConverter" />
                             <f:attribute name="pattern" value="dd-MM-yyyy hh:mm" />
                         </h:outputText>
                     </p:column>
 
                     <p:column headerText="Price" width="50">
-                        <h:outputText value="#{rep.show.price}" />
+                        <h:outputText value="#{rep.show.price}">
+                            <f:convertNumber type="currency" currencySymbol="€" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Details" width="80">
+                        <p:commandButton id="detailButton" value="Show details" action="representationView.jsf">
+
+                        </p:commandButton>
                     </p:column>
 
                     <p:column headerText="Book it" width="80">
-                        <p:commandButton id="bookButton" value="Go!" disabled="#{not rep.show.bookable}"/>
+                        <p:commandButton id="bookButton" value="#{rep.show.bookable ? 'Go!' : 'Not bookable'}" disabled="#{not rep.show.bookable}"/>
                     </p:column>
                 </p:dataTable>
 
             </h:panelGrid>
 
-            <p:commandButton id="load" value="Load" action="#{representationController.loadList()}" update="repTable"/>
-
+            <p:commandButton value="Create representation" action="representationCreate.jsf"/>
         </p:panel>
     </h:form>
 </h:body>
