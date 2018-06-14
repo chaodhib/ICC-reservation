@@ -4,10 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Table(name = "locality")
 @Entity
-public class Locality {
+public class Locality implements Serializable {
 
     @Id
     private Integer id;

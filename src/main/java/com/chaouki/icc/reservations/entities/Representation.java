@@ -2,11 +2,12 @@ package com.chaouki.icc.reservations.entities;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Table(name = "representations")
 @Entity
-public class Representation {
+public class Representation implements Serializable {
     @Id
     private Integer id;
     @ManyToOne

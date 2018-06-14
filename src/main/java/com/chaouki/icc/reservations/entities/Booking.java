@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Table(name = "representation_user")
 @Entity
-public class SeatAssignment {
+public class Booking {
 
     @Id
     private Integer id;

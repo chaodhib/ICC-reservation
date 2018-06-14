@@ -15,27 +15,33 @@
 
         <p:panel header="Shows">
             <h:panelGrid columns="2" cellpadding="4">
-                <p:dataTable id="repTable" var="var" value="#{showController.showList}"
+                <p:dataTable var="var" value="#{showController.showList}"
                              paginator="true" rows="10"
                              paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                lazy="true">
+                             widgetVar="showTable"
+                >
 
-                    <p:column headerText="Title" width="200">
+                    <p:column headerText="Title" width="200" filterBy="#{var.title}" filterMatchMode="contains" sortBy="#{var.title}">
                         <h:outputText value="#{var.title}" />
                     </p:column>
 
-                    <!--<p:column headerText="Location" width="300">-->
-                        <!--<h:outputText value="#{rep.location.designation}" />-->
-                    <!--</p:column>-->
+                    <p:column headerText="Main location" width="300" filterBy="#{var.location.designation}" filterMatchMode="contains" sortBy="#{var.location.designation}">
+                        <h:outputText value="#{var.location.designation}" />
+                    </p:column>
 
-                    <!--<p:column headerText="Date and time"  width="150">-->
-                        <!--<h:outputText value="#{rep.when}" >-->
-                            <!--<f:converter converterId="localDateTimeConverter" />-->
-                            <!--<f:attribute name="pattern" value="dd-MM-yyyy hh:mm" />-->
-                        <!--</h:outputText>-->
-                    <!--</p:column>-->
+                    <p:column filterBy="#{var.bookable}" headerText="Bookable"  width="200" filterMatchMode="equals" sortBy="#{var.bookable}">
+                        <f:facet name="filter">
+                            <p:selectOneButton onchange="PF('showTable').filter()">
+                                <f:converter converterId="javax.faces.Boolean" />
+                                <f:selectItem itemLabel="All" itemValue="" />
+                                <f:selectItem itemLabel="Yes" itemValue="true" />
+                                <f:selectItem itemLabel="No" itemValue="false" />
+                            </p:selectOneButton>
+                        </f:facet>
+                        <h:outputText value="#{var.bookable ? 'Yes': 'No'}" />
+                    </p:column>
 
-                    <p:column headerText="Price" width="50">
+                    <p:column headerText="Price" width="50" sortBy="#{var.price}">
                         <h:outputText value="#{var.price}">
                             <f:convertNumber type="currency" currencySymbol="€" />
                         </h:outputText>
@@ -46,7 +52,7 @@
                     </p:column>
 
                     <!--<p:column headerText="Book it" width="80">-->
-                        <!--<p:commandButton id="bookButton" value="#{rep.show.bookable ? 'Go!' : 'Not bookable'}" disabled="#{not rep.show.bookable}"/>-->
+                        <!--<p:commandButton id="bookButton" value="#{var.bookable ? 'Go!' : 'Not bookable'}" disabled="#{not var.bookable}" action="#{user.editAction(delete)}"/>-->
                     <!--</p:column>-->
                 </p:dataTable>
 

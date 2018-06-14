@@ -4,10 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Table(name = "locations")
 @Entity
-public class Location {
+public class Location implements Serializable {
     @Id
     private Integer id;
     private String slug;
