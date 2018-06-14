@@ -23,6 +23,11 @@ public class ShowController {
         showList = showService.findAll();
     }
 
+    public void toggleAvailability(Show show) {
+        showService.toggleAvailability(show);
+        loadList();
+    }
+
     public List<Show> getShowList() {
         return showList;
     }

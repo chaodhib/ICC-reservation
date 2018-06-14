@@ -15,7 +15,7 @@
 
         <p:panel header="Shows">
             <h:panelGrid columns="2" cellpadding="4">
-                <p:dataTable var="var" value="#{showController.showList}"
+                <p:dataTable id="showDatatable" var="var" value="#{showController.showList}"
                              paginator="true" rows="10"
                              paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                              widgetVar="showTable"
@@ -53,6 +53,9 @@
                         </p:commandButton>
                     </p:column>
 
+                    <p:column headerText="Toggle Availability" width="80">
+                        <p:commandButton id="toggleBookable" value="See details" action="#{showController.toggleAvailability(var)}" update="showDatatable"/>
+                    </p:column>
                 </p:dataTable>
             </h:panelGrid>
         </p:panel>

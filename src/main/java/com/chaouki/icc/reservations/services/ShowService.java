@@ -7,4 +7,6 @@ import java.util.List;
 public interface ShowService {
 
     List<Show> findAll();
+
+    void toggleAvailability(Show show);
 }
