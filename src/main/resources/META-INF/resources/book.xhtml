@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Landing Page</title>
+</h:head>
+
+<h:body>
+    <h:form >
+
+        <p:growl id="growl" showDetail="true" sticky="true" />
+
+        <p:panel header="Representations">
+            <h:panelGrid columns="2" cellpadding="4">
+
+                <h:outputLabel for="title" value="Title:" />
+                <h:outputText id="title" value="#{bookingController.representation.show.title}" />
+
+                <h:outputLabel for="location" value="Location:" />
+                <h:outputText id="location" value="#{bookingController.representation.location != null ? bookingController.representation.location.designation : bookingController.representation.show.location.designation}" />
+
+                <h:outputLabel for="datetime" value="Date and time:" />
+                <h:outputText id="datetime" value="#{bookingController.representation.when}" >
+                    <f:converter converterId="localDateTimeConverter" />
+                    <f:attribute name="pattern" value="dd-MM-yyyy hh:mm" />
+                </h:outputText>
+
+                <h:outputLabel for="price" value="Price (per seat):" />
+                <h:outputText id="price" value="#{bookingController.representation.show.price}">
+                    <f:convertNumber type="currency" currencySymbol="€" />
+                </h:outputText>
+
+                <h:outputLabel for="seats" value="Number of desired seats: " />
+                <p:spinner id="seats" value="#{bookingController.numberOfSeats}" min="1" max="20" />
+
+                <h:outputLabel for="creditcard" value="Credit card number: " />
+                <p:inputText id="creditcard" value="#{bookingController.creditCardNumber}"/>
+
+                <p:commandButton value="Make the booking" action="#{bookingController.book()}" update="growl"/>
+            </h:panelGrid>
+            <p:commandButton value="Return Shows menu" action="showList.jsf"/>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

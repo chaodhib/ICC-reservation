@@ -48,14 +48,12 @@
                     </p:column>
 
                     <p:column headerText="Details" width="80">
-                        <p:commandButton id="detailButton" value="See details" action="showView.jsf" />
+                        <p:commandButton id="detailButton" value="See details" action="showDetail.jsf">
+                            <f:param name="showId" value="#{var.id}" />
+                        </p:commandButton>
                     </p:column>
 
-                    <!--<p:column headerText="Book it" width="80">-->
-                        <!--<p:commandButton id="bookButton" value="#{var.bookable ? 'Go!' : 'Not bookable'}" disabled="#{not var.bookable}" action="#{user.editAction(delete)}"/>-->
-                    <!--</p:column>-->
                 </p:dataTable>
-
             </h:panelGrid>
         </p:panel>
     </h:form>

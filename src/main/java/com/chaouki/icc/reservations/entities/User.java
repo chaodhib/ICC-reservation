@@ -2,10 +2,13 @@ package com.chaouki.icc.reservations.entities;
 
 import javax.persistence.*;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Table(name = "users")
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Integer id;
     private String login;
     private String password;

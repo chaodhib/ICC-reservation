@@ -1,15 +1,15 @@
 package com.chaouki.icc.reservations.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Table(name = "representation_user")
 @Entity
 public class Booking {
 
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Integer id;
     @ManyToOne
     private Representation representation;
