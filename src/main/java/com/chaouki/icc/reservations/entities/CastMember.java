@@ -3,7 +3,11 @@ package com.chaouki.icc.reservations.entities;
 import javax.persistence.*;
 import java.util.List;
 
-@Table(name = "artiste_type")
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.FetchType.EAGER;
+
+@Table(name = "cast_member")
 @Entity
 public class CastMember {
 
@@ -16,8 +20,8 @@ public class CastMember {
     @ManyToOne
     private CastMemberType type;
 
-    @ManyToMany
-    private List<Show> shows;
+    @ManyToOne
+    private Show show;
 
     public Integer getId() {
         return id;
@@ -43,11 +47,4 @@ public class CastMember {
         this.type = type;
     }
 
-    public List<Show> getShows() {
-        return shows;
-    }
-
-    public void setShows(List<Show> shows) {
-        this.shows = shows;
-    }
 }

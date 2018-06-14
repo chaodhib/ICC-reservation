@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "localities")
+@Table(name = "locality")
 @Entity
 public class Locality {
 
